@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Cards</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    justify-content: space-around;
+    gap: 20px; /* Space between cards */
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+    width: 300px; /* Set a fixed width for each card */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%; /* Make the image circular */
+    margin-bottom: 15px;
+}
+
+.name, .username, .age, .about {
+    margin: 10px 0;
+}
+
+.about {
+    font-size: 14px;
+    color: #666;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Button text color */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    margin-top: 10px; /* Add some space from top */
+    width: calc(100% - 20px); /* Adjust width to fit */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+</style>
+<body>
+    <div class="main">
+        <% user.forEach(element => { %>
+            <div class="card">
+                <div class="image">
+                    <img src="<%= element.image %>" alt="User Image">
+                </div>
+                <div class="name">
+                    <strong><%= element.name %></strong>
+                </div>
+                <div class="username">
+                    <%= element.username %>
+                </div>
+                <div class="age">
+                    Age: <%= element.age %>
+                </div>
+                <div class="about">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, numquam?
+                </div>
+                <!-- Update Button -->
+                <a class="btn" href="/edit/<%= element._id %>">Update</a>
+                <!-- Delete Button -->
+                <a class="btn" href="/delete/<%= element._id %>">Delete</a>
+            </div>
+        <% }); %>
+    </div>
+
+    <!-- Add the btn class to style this anchor as a button -->
+    <a id="btn" class="btn" href="/">Click</a>
+</body>
+</html>
